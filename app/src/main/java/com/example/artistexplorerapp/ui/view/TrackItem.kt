@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.artistexplorerapp.data.dto.Track
+import com.example.artistexplorerapp.ui.viewmodel.FormatDuration
 
 @Composable
 fun TrackItem(track: Track, trackNumber: Int) {
@@ -43,16 +44,24 @@ fun TrackItem(track: Track, trackNumber: Int) {
                 color = Color(0xFFFFB700)
             )
         }
+
         Spacer(modifier = Modifier.width(16.dp))
+
         Text(
-            text = track.strTrack,
+            text = if (track.strTrack.length > 30) {
+                "${track.strTrack.take(30)}..."
+            } else {
+                track.strTrack
+            },
             style = MaterialTheme.typography.bodyLarge,
             fontWeight = FontWeight.Medium,
         )
-        Spacer(modifier = Modifier.width(16.dp))
+
+        Spacer(modifier = Modifier.weight(1f))
+
         Text(
-            text = track.strDuration ?: "",
-            style = MaterialTheme.typography.bodyMedium
+            text = FormatDuration(track.intDuration),
+            style = MaterialTheme.typography.bodyLarge
         )
     }
 }

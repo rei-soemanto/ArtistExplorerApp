@@ -43,13 +43,17 @@ fun AlbumHeader(album: Album) {
                 album.strAlbum,
                 style = MaterialTheme.typography.headlineMedium,
             )
+
             Spacer(modifier = Modifier.height(4.dp))
+
             Text(
                 "${album.intYearReleased ?: ""} • ${album.strGenre ?: "Unknown"}",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
+
             Spacer(modifier = Modifier.height(12.dp))
+
             Text(
                 text = album.strDescriptionEN?.trim() ?: "No description available.",
                 style = MaterialTheme.typography.bodyMedium,
